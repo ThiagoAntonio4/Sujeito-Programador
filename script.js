@@ -1,9 +1,9 @@
 let listElement = document.querySelector("#app ul")
 let buttonElement = document.querySelector("#app button")
 let inputElement = document.querySelector("#app input")
-tarefas = [];
+tarefas = lJSON.parse(localStorage.getItem("tasklist")) || [];
 
-function renderTask(){
+function renderTasklist(){
     listElement.innerHTML = ""
     tarefas.map((task)=>{
         let taskElement = document.createElement('li')
@@ -18,20 +18,29 @@ function renderTask(){
         taskBtnDelete.setAttribute("onclick",`deleteTask(${taskIndex})`)
     })
 }
+
+renderTasklist()
+
 function addTask(){
     if(inputElement.value === ""){
         alert("Digite uma tarefa")
     } else{
         tarefas.push(inputElement.value)
         inputElement.value = ""
-        renderTask()
+        renderTasklist()
+        saveTasklist()
     }
 }
 
 function deleteTask(index){
     console.log(index)
     tarefas.splice(index,1)
-    renderTask()
+    renderTasklist()
+    saveTasklist()
+}
+
+function saveTasklist(){
+    localStorage.setItem(tasklist, JSON.stringify(tarefas))    
 }
 
 buttonElement.onclick = addTask
