@@ -1,7 +1,7 @@
 let listElement = document.querySelector("#app ul")
 let buttonElement = document.querySelector("#app button")
 let inputElement = document.querySelector("#app input")
-tarefas = lJSON.parse(localStorage.getItem("tasklist")) || [];
+tarefas = JSON.parse(localStorage.getItem("tasklist")) || [];
 
 function renderTasklist(){
     listElement.innerHTML = ""
@@ -17,6 +17,7 @@ function renderTasklist(){
         taskBtnDelete.appendChild(taskBtnText)
         taskBtnDelete.setAttribute("onclick",`deleteTask(${taskIndex})`)
     })
+    console.log(tarefas)
 }
 
 renderTasklist()
@@ -40,7 +41,7 @@ function deleteTask(index){
 }
 
 function saveTasklist(){
-    localStorage.setItem(tasklist, JSON.stringify(tarefas))    
+    localStorage.setItem("tasklist", JSON.stringify(tarefas))    
 }
 
 buttonElement.onclick = addTask
