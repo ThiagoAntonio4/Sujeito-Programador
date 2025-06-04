@@ -24,7 +24,7 @@ let listagem = [5,3,'Supi',2,'Fabio']
 
 let busca = listagem.find((item)=>{ //pega o primeiro e acaba, senao undefined, mas so se return = bool
     if(item === "Supi"){
-        return `Achou ${item}`
+        return console.log(`Achou ${item}`)
     }
 })
 
